@@ -64,10 +64,8 @@ jobs:
             kubectl get nodes
 
     - name: Replace tokens in manifests
-      uses: cschlieden/replace-tokens@v1
+      uses: microsoft/variable-substitution@v1
       with:
-            tokenPrefix: '_{_'
-            tokenSuffix: '_}_'
             files:
               kubernetes/development/*.yaml
       env:
