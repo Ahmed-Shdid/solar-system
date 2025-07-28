@@ -81,8 +81,8 @@ jobs:
     #     docker images
 
 
-    #     # Run the container in detached mode
-    #     docker run --name solar-system-app -d \
+    #    # Run the container in detached mode
+    #    docker run --name solar-system-app -d \
     #       -p 3000:3000 \
     #       -e MONGO_URI=$MONGO_URI \
     #       -e MONGO_USERNAME=$MONGO_USERNAME \
