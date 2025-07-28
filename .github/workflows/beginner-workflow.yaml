@@ -55,9 +55,9 @@ jobs:
           path: test-results.xml
 
   docker-build:
-      name: Docker Build and Push
-      runs-on: ubuntu-latest
-      steps:
+    name: Docker Build and Push
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
