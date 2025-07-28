@@ -3,10 +3,10 @@ name: Solar System Workflow beginner
 
 on:
   workflow_dispatch:
-#   push:
-#     branches:
-#       - main
-#       - 'feature/*'
+  push:
+    branches:
+      - main
+      - 'feature/*'
 
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
       mongodb-service:
         image: mongo:latest
     env:
-      MONGO_URI: 'mongodb+srv://ahmed:${{ secrets.MONGO_PASSWORD }}@github-actions-iti-2025.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000'
+      MONGO_URI: "mongodb+srv://${{ secrets.MONGO_USERNAME }}:${{ secrets.MONGO_PASSWORD }}@github-actions-iti-2025.global.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
       MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
       MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
     steps:
@@ -75,25 +75,25 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
 
 
-    # - name: Docker Image Testing
-    #   run: |
-    #     # List built images
-    #     docker images
+      # - name: Docker Image Testing
+      #   run: |
+      #   #List built images
+      #     docker images
+
+ 
+      #   # Run the container in detached mode
+      #     docker run --name solar-system-app -d \
+      #        -p 3000:3000 \
+      #        -e MONGO_URI=$MONGO_URI \
+      #        -e MONGO_USERNAME=$MONGO_USERNAME \
+      #        -e MONGO_PASSWORD=$MONGO_PASSWORD \
+      #         ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
 
 
-    #    # Run the container in detached mode
-    #    docker run --name solar-system-app -d \
-    #       -p 3000:3000 \
-    #       -e MONGO_URI=$MONGO_URI \
-    #       -e MONGO_USERNAME=$MONGO_USERNAME \
-    #       -e MONGO_PASSWORD=$MONGO_PASSWORD \
-    #       ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+      #   # Display container IP address
+      #     echo "Container IP:" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
 
 
-    #     # Display container IP address
-    #     echo "Container IP:" $(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
-
-
-    #     # Test the /live endpoint
-    #     echo "Testing /live endpoint"
-    #     wget -q -O - http://127.0.0.1:3000/live | grep live
+      #   # Test the /live endpoint
+      #     echo "Testing /live endpoint"
+      #     wget -q -O - http://127.0.0.1:3000/live | grep live
